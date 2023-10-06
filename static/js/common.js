@@ -98,13 +98,13 @@ $(function () {
 
 	if (location.href.indexOf('/list/') > -1) {
 		jsUrl = '../../data/?random=index&callback=?';
-		jsApiUrl = '../../../static/js/jxurl.js?_=' + $.now();
+		jsApiUrl = '../../../static/js/jxurl.js';
 	} else if (location.href.indexOf('/play/') > -1) {
 		jsUrl = '../data/?random=index&callback=?';
-		jsApiUrl = '../../static/js/jxurl.js?_=' + $.now();
+		jsApiUrl = '../../static/js/jxurl.js';
 	} else {
 		jsUrl = './data/?random=index&callback=?';
-		jsApiUrl = '../static/js/jxurl.js?_=' + $.now();
+		jsApiUrl = '../static/js/jxurl.js';
 	}
 
 	$.loadScript(jsApiUrl);

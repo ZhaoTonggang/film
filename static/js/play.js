@@ -7,6 +7,7 @@ function pageLoad() {
 		'item': null
 	};
 
+
 	$(function () {
 
 		if ($.URI.vid) {
@@ -29,16 +30,14 @@ function pageLoad() {
 
 			// 上一集
 			$('#episodesControl a.prev').tap(function () {
-				if ($('#episodesList .current').next().length) {
-					$('#episodesList .current').next().trigger('tap');
-				}
+				prev(data.hasmore == 2);
 			})
+
 			// 下一集
 			$('#episodesControl a.next').tap(function () {
-				if ($('#episodesList .current').prev().length) {
-					$('#episodesList .current').prev().trigger('tap');
-				}
+				next(data.hasmore == 2);
 			})
+
 
 			// 播放
 			var tipInterval
@@ -56,7 +55,7 @@ function pageLoad() {
 				if (!$(this).attr('data-hasmore') || ($(this).attr('data-hasmore') != 1 && $(this).attr('data-hasmore') != 2)) {
 					if ($(this).attr('data-api')) {
 
-						console.log('播放来源：' + $(this).attr('data-api') + encodeURIComponent($(this).attr('data-href')));
+
 
 						$('#playBoxIframe .tip').show().find('a').attr('href', $(this).attr('data-href'));
 						if (tipInterval) {
@@ -97,17 +96,8 @@ function pageLoad() {
 							$('#titleItem').html($.htmlEncode($('#titleItem').attr('value')) + '<span>' + $.htmlEncode((/^\d+$/.test(episodes_number) ? '第' + episodes_number + '集' : episodes_number)) + '</span>');
 
 							// 更新剧集操作
-							// if ($('#episodesList .current').next('a').length) {
-							// 	$('#episodesControl a.prev').css('display', 'block');
-							// } else {
-							// 	$('#episodesControl a.prev').hide();
-							// }
-							// if ($('#episodesList .current').prev('a').length) {
-							// 	$('#episodesControl a.next').css('display', 'block');
-							// } else {
-							// 	$('#episodesControl a.next').hide();
-							// }
 							episodesControl(data.hasmore == 2);
+
 
 						}
 
@@ -153,6 +143,7 @@ function pageLoad() {
 										var part = (data.hasmore == 2) ? Object.keys(rt.data.list).length : 0;
 
 										for (var i in rt.data.list) {
+
 											if (data.hasmore == 2) {
 
 												//把内容插入到…内部的首端 ，倒序
@@ -210,18 +201,7 @@ function pageLoad() {
 												$('#episodesList a:eq(0)').trigger('tap');
 											}
 										}
-
-										// 更新剧集操作
-										// if ($('#episodesList .current').next('a').length) {
-										// 	$('#episodesControl a.prev').css('display', 'block');
-										// } else {
-										// 	$('#episodesControl a.prev').hide();
-										// }
-										// if ($('#episodesList .current').prev('a').length) {
-										// 	$('#episodesControl a.next').css('display', 'block');
-										// } else {
-										// 	$('#episodesControl a.next').hide();
-										// }
+										//更新剧集操作
 										episodesControl(data.hasmore == 2);
 
 									} else {
@@ -238,10 +218,12 @@ function pageLoad() {
 				}
 			}, 'a');
 
+
 			//播放来源
 			if ($('#siteList').length && $('#fromList').attr('from')) {
 				$('#siteList a').remove();
 				//   var data = JSON.parse($('#fromList').attr('from')).data;
+
 
 				for (var i in data.from) {
 					$(parseTemplate(template.site, {
@@ -316,7 +298,9 @@ function pageLoad() {
 
 			}
 
-			// 载入线路
+
+
+			// 载入线路   
 			function lineLoad(i) {
 				if ($('#fromList').length && $('#fromList').attr('from')) {
 					$('#fromList a').remove();
@@ -366,9 +350,13 @@ function pageLoad() {
 				}
 
 			}
+
+
 		} else {
 			location.href = './index.html';
 		}
+
+
 	})
 
 	pageLoaded = true;
