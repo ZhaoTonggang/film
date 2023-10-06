@@ -12,7 +12,6 @@
   {"src":"/list/zongyi/","dest":"/api/list/zongyi/"},
   {"src":"/list/dongman/","dest":"/api/list/dongman/"},
   {"src":"/search/","dest":"/api/search/"},
-  {"src":"/play/","dest":"/api/play/"},
-  {"src":"/play/box/","dest":"/api/play/box/"}
+  {"src":"/play/","dest":"/api/play/"}
 ]
 }

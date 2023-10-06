@@ -37,7 +37,7 @@ $data = data(array("act" => "item", "id" => $_GET["vid"]));
 <body class="body">
 
 	<div class="header">
-		<a class="logo" href="../" style="background-image:url(<?php echo $CONFIG['logo'] ?: ' ../templets/' . $templets . '/images/logo.png'; ?>)"></a>
+		<a class="logo" href="../" style="background-image:url(https://movie-app.heheda.top/icon/logo.png)"></a>
 		<div class="search">
 			<a id="searchDo"></a>
 			<input type="text" placeholder="输入你想看的" id="search" />
@@ -46,8 +46,8 @@ $data = data(array("act" => "item", "id" => $_GET["vid"]));
 
 	<?php if (count($data['from']) !== 0) { ?>
 		<div id="playBox">
-
 			<div class="play-box" id="playBoxIframe">
+				<iframe name="playBox" id="playIframe" allow="fullscreen;autoplay" sandbox="allow-scripts allow-same-origin"></iframe>
 				<div class="tip">如无法播放请尝试切换线路，或<a>点击前往<span></span>播放</a><i class="close"></i></div>
 			</div>
 
