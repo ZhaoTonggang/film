@@ -1,6 +1,7 @@
 function pageLoad() {
 
 	var template = {
+		'site': null,
 		'from': null,
 		'episodes': null,
 		'item': null
@@ -9,6 +10,9 @@ function pageLoad() {
 	$(function () {
 
 		if ($.URI.vid) {
+
+			//取播放数据
+			var data = JSON.parse($('#fromList').attr('from')).data;
 
 			// 关闭播放提示
 			$('#playBoxIframe .tip .close').tap(function () {
@@ -238,7 +242,6 @@ function pageLoad() {
 			if ($('#siteList').length && $('#fromList').attr('from')) {
 				$('#siteList a').remove();
 				//   var data = JSON.parse($('#fromList').attr('from')).data;
-
 
 				for (var i in data.from) {
 					$(parseTemplate(template.site, {
